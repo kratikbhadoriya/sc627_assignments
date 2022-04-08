@@ -124,7 +124,7 @@ class balance:
         return self.botpos,self.time_elapsed
         
 
-while __name__ == '__main__':
+if __name__ == '__main__':
     rospy.init_node('assign4_balance', anonymous = True)
     bot = balance()
     botpos,time_elapsed = bot.balancing()
