@@ -12,7 +12,31 @@ def bug1(start,goal,obs,step):
     path = [start]
     while dist2(current_pos,goal)>step:
         current_pos = update(current_pos,goal,step)
-        if 
+        min = float('inf')
+        closest = []
+        # print("s2", start, current_pos)
+
+        for P in obstaclesList:
+            if(computeDistancePointToPolygon(P,current_pos)[0]<min):
+                min = computeDistancePointToPolygon(P,current_pos)[0]
+                closest = P
+            else:
+                None
+            #print('path1:',path)
+            # print("s3", start)
+        if(helper.computeDistancePointToPolygon(closest,current_pos)[0]<step):
+            # print("d2", start)
+            # path.append(current_pos)
+            print("Failure: There is an obstacle lying between the start and goal")
+            return path
+        else:
+            current_pos = update(current_pos,goal,step)
+            path.append(current_pos)
+        
+    path.append(goal)
+    #   print("s1", start)
+    print("Success")
+    return path
 
 if __name__=="__main__":
     obs = []
